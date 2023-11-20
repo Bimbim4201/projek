@@ -5,11 +5,25 @@ class Vehicle:
         self.make = make
         self.model = model
         self.year = year
+        self.is_engine_started = False
     
     def start_engine(self):
-        print(f"Starting the engine of {self.make} {self.model} ({self.year})...")
-        time.sleep(2)
-        print("Mesin Menyala!\n")
+         if self.is_engine_started:
+            print("Mesin sudah menyala!\n")
+        else:
+            print(f"Menyalakan mesin {self.make} {self.model} ({self.year})...")
+            time.sleep(2)
+            self.is_engine_started = True
+            print("Mesin menyala!\n")
+
+    def stop_engine(self):
+        if not self.is_engine_started:
+            print("Mesin sudah mati!\n")
+        else:
+            print(f"Mematikan mesin {self.make} {self.model} ({self.year})...")
+            time.sleep(2)
+            self.is_engine_started = False
+            print("Mesin dimatikan!\n")
 
 
 class Car(Vehicle):
