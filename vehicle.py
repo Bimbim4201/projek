@@ -9,21 +9,21 @@ class Vehicle:
     def start_engine(self):
         print(f"Starting the engine of {self.make} {self.model} ({self.year})...")
         time.sleep(2)
-        print("Engine started!\n")
+        print("Mesin Menyala!\n")
 
 
 class Car(Vehicle):
     def start_engine(self):
-        print(f"Starting the engine of the car: {self.make} {self.model} ({self.year})...")
+        print(f"Menyalakan Mesin Mobil: {self.make} {self.model} ({self.year})...")
         time.sleep(2)
-        print("Vroom! The car's engine is running!\n")
+        print("Vroom! Mesin Mobil Menyala!\n")
 
 
 class Motorcycle(Vehicle):
     def start_engine(self):
-        print(f"Starting the engine of the motorcycle: {self.make} {self.model} ({self.year})...")
+        print(f"Menyalakan Mesin Motor: {self.make} {self.model} ({self.year})...")
         time.sleep(2)
-        print("Vroom! The motorcycle's engine is running!\n")
+        print("Vroom! Mesin Motor Menyala!\n")
 
 
 # Membuat objek Car
