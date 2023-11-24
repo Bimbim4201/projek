@@ -1,27 +1,39 @@
 import numpy as np
 import cv2
 
-cap = cv2.VideoCapture(0)
+class VideoProcessor:
+    def __init__(self):
+        self.cap = cv2.VideoCapture(0)
 
-while True:
-    ret, frame = cap.read()
-    width =  int(cap.get(3))
-    height =  int(cap.get(4))
+    def process_video(self):
+        while True:
+            ret, frame = self.cap.read()
+            width = int(self.cap.get(3))
+            height = int(self.cap.get(4))
 
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    lower_blue = np.array([50, 50, 50]) 
-    upper_blue = np.array([130, 255, 255])
+            result = self.apply_color_mask(frame)
 
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+            cv2.imshow('frame', result)
+            cv2.imshow('mask', self.create_mask(frame))
 
-    result = cv2.bitwise_and(frame, frame, mask=mask)
+            if cv2.waitKey(1) == ord('q'):
+                break
 
-    
-    cv2.imshow('frame', result)
-    cv2.imshow('mask', mask)
+        self.cap.release()
+        cv2.destroyAllWindows()
 
-    if cv2.waitKey(1) == ord('q'):
-        break
+    def create_mask(self, frame):
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        lower_blue = np.array([50, 50, 50])
+        upper_blue = np.array([130, 255, 255])
+        mask = cv2.inRange(hsv, lower_blue, upper_blue)
+        return mask
 
-cap.release()
-cv2.destroyAllWindows()
+    def apply_color_mask(self, frame):
+        mask = self.create_mask(frame)
+        result = cv2.bitwise_and(frame, frame, mask=mask)
+        return result
+
+# Usage example
+video_processor = VideoProcessor()
+video_processor.process_video()
