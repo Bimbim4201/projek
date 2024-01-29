@@ -1,0 +1,5 @@
+install this on cmd
+# get-pip.py
+# pip install opencv-python
+# pip install opencv-contrib-python
+# pip install cvlib
